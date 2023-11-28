@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/27 17:15:05 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 19:33:39 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 
 Animal::Animal( void ): _type("Animal")
 {
-	std::cout << GREEN_T << "Animal default constructor called" << RESET << std::endl;
+	std::cout << GREEN_T << "Animal default constructor called" << DEFAULT_T << std::endl;
 }
 
 Animal::Animal( const Animal &src )
 {
-	std::cout << GREEN_T << "Animal copy constructor called" << RESET << std::endl;
+	std::cout << GREEN_T << "Animal copy constructor called" << DEFAULT_T << std::endl;
 
 	*this = src;
 }
 
 Animal::~Animal( void )
 {
-	std::cout << RED_T << "Animal destructor called" << RESET << std::endl;
+	std::cout << RED_T << "Animal destructor called" << DEFAULT_T << std::endl;
 }
 
 /* ************************************************************************** */
@@ -39,6 +39,8 @@ Animal::~Animal( void )
 
 Animal	&Animal::operator=( const Animal &src )
 {
+	std::cout << YELLOW_T << "Animal operator= called" << DEFAULT_T << std::endl;
+
 	this->_type = src._type;
 
 	return (*this);

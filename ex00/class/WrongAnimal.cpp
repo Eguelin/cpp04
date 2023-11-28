@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/27 17:25:41 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 19:33:53 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 
 WrongAnimal::WrongAnimal( void ): _type("WrongAnimal")
 {
-	std::cout << GREEN_T << "WrongAnimal default constructor called" << RESET << std::endl;
+	std::cout << GREEN_T << "WrongAnimal default constructor called" << DEFAULT_T << std::endl;
 }
 
 WrongAnimal::WrongAnimal( const WrongAnimal &src )
 {
-	std::cout << GREEN_T << "WrongAnimal copy constructor called" << RESET << std::endl;
+	std::cout << GREEN_T << "WrongAnimal copy constructor called" << DEFAULT_T << std::endl;
 
 	*this = src;
 }
 
 WrongAnimal::~WrongAnimal( void )
 {
-	std::cout << RED_T << "WrongAnimal destructor called" << RESET << std::endl;
+	std::cout << RED_T << "WrongAnimal destructor called" << DEFAULT_T << std::endl;
 }
 
 /* ************************************************************************** */
@@ -39,6 +39,8 @@ WrongAnimal::~WrongAnimal( void )
 
 WrongAnimal	&WrongAnimal::operator=( const WrongAnimal &src )
 {
+	std::cout << YELLOW_T << "WrongAnimal operator= called" << DEFAULT_T << std::endl;
+
 	this->_type = src._type;
 
 	return (*this);

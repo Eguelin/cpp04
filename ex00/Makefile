@@ -6,11 +6,11 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 16:35:50 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/27 17:23:54 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/28 15:50:52 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re $(OUT_DIR)
+.PHONY: all clean fclean re
 .SILENT:
 
 # **************************************************************************** #
@@ -18,7 +18,7 @@
 # **************************************************************************** #
 
 NAME	= a.out
-OUT_DIR	= build/
+OBJ_DIR	= .objs/
 CLS_DIR = class/
 SRC_DIR	= src/
 CC		= c++
@@ -64,7 +64,7 @@ SRC_FILES	= main.cpp
 
 ALL_FILES	+= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
-OBJ_FILES	= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o))
+OBJ_FILES	= $(addprefix $(OBJ_DIR), $(ALL_FILES:.cpp=.o))
 
 DEP_FILES	= $(OBJ_FILES:.o=.d)
 
@@ -78,11 +78,11 @@ $(NAME): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(INC) $(OBJ_FILES) -o $(NAME)
 	echo $(COMP_MSG)
 
-$(OUT_DIR)%.o: %.cpp | $(OUT_DIR)
+$(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
 
 clean:
-	$(RM) $(OUT_DIR)
+	$(RM) $(OBJ_DIR)
 	echo $(CLEAN_MSG)
 
 fclean: clean
@@ -91,7 +91,7 @@ fclean: clean
 
 re: fclean all
 
-$(OUT_DIR):
-	mkdir -p $(OUT_DIR)$(SRC_DIR) $(OUT_DIR)$(CLS_DIR)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)$(SRC_DIR) $(OBJ_DIR)$(CLS_DIR)
 
 -include $(DEP_FILES)
