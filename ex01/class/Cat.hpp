@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:35:49 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:27:50 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:27:38 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class Cat: public Animal
 		Cat( const Cat &src );
 		~Cat( void );
 
+		Cat		&operator=( const Cat &src );
+
 		Animal	&operator=( const Animal &src );
 
 		Brain	*getBrain( void ) const;
@@ -37,5 +39,7 @@ class Cat: public Animal
 
 		Brain	*_brain;
 };
+
+std::ostream	&operator<<( std::ostream &o, const Cat &src );
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:34:16 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:28:10 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:27:33 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ class Dog: public Animal
 		Dog( const Dog &src );
 		~Dog( void );
 
-		Animal	&operator=( const Animal &src );
+		Dog		&operator=( const Dog &src );
+
+		virtual Animal	&operator=( const Animal &src );
 
 		Brain	*getBrain( void ) const;
 
@@ -37,5 +39,7 @@ class Dog: public Animal
 
 		Brain	*_brain;
 };
+
+std::ostream	&operator<<( std::ostream &o, const Dog &src );
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:17:41 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:40:38 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,12 @@ void	Animal::makeSound( void ) const
 std::ostream	&operator<<( std::ostream &o, const Animal &src )
 {
 	o << "Type: " << src.getType() << std::endl;
+	o << "Brain: ";
+	if (src.getBrain())
+	{
+		o << src.getBrain() << std::endl;
+		o << *src.getBrain();
+	}
+
 	return (o);
 }

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:35:49 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:28:35 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:53:23 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*                         Constructors & Destructors                         */
 /* ************************************************************************** */
 
-Cat::Cat( void )
+Cat::Cat( void ): Animal()
 {
 	std::cout << BLUE_T << "Cat default constructor called" << DEFAULT_T << std::endl;
 
@@ -43,17 +43,26 @@ Cat::~Cat( void )
 /*                              Operator overload                             */
 /* ************************************************************************** */
 
-Animal	&Cat::operator=( const Animal &src )
+Cat		&Cat::operator=( const Cat &src )
 {
 	std::cout << YELLOW_T << "Cat operator= called" << DEFAULT_T << std::endl;
 
 	if (this != &src)
 	{
+		this->_type = src._type;
+		*this->_brain = *src._brain;
+	}
+
+	return (*this);
+}
+
+Animal	&Cat::operator=( const Animal &src )
+{
+	std::cout << YELLOW_T << "Cat::Animal operator= called" << DEFAULT_T << std::endl;
+
+	if (this != &src)
+	{
 		this->_type = src.getType();
-
-		if (!src.getBrain())
-			return (*this);
-
 		*this->_brain = *src.getBrain();
 	}
 
@@ -73,4 +82,17 @@ Brain	*Cat::getBrain( void ) const {return (this->_brain);}
 void	Cat::makeSound( void ) const
 {
 	std::cout << "Miaou" << std::endl;
+}
+
+/* ************************************************************************** */
+/*                               Print overload                               */
+/* ************************************************************************** */
+
+std::ostream	&operator<<( std::ostream &o, const Cat &src )
+{
+	o << "Cat type: " << src.getType() << std::endl;
+	o << "Cat brain: " << src.getBrain() << std::endl;
+	o << "Cat " << *src.getBrain();
+
+	return (o);
 }

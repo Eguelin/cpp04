@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:34:16 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:28:28 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:53:30 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*                         Constructors & Destructors                         */
 /* ************************************************************************** */
 
-Dog::Dog( void )
+Dog::Dog( void ): Animal()
 {
 	std::cout << BLUE_T << "Dog default constructor called" << DEFAULT_T << std::endl;
 
@@ -43,16 +43,25 @@ Dog::~Dog( void )
 /*                              Operator overload                             */
 /* ************************************************************************** */
 
-Animal	&Dog::operator=( const Animal &src )
+Dog		&Dog::operator=( const Dog &src )
 {
 	std::cout << YELLOW_T << "Dog operator= called" << DEFAULT_T << std::endl;
+
+	if (this != &src)
+	{
+		this->_type = src._type;
+		*this->_brain = *src._brain;
+	}
+
+	return (*this);
+}
+
+Animal	&Dog::operator=( const Animal &src )
+{
+	std::cout << YELLOW_T << "Dog::Animal operator= called" << DEFAULT_T << std::endl;
 	if (this != &src)
 	{
 		this->_type = src.getType();
-
-		if (!src.getBrain())
-			return (*this);
-
 		*this->_brain = *src.getBrain();
 	}
 
@@ -72,4 +81,17 @@ Brain	*Dog::getBrain( void ) const {return (this->_brain);}
 void	Dog::makeSound( void ) const
 {
 	std::cout << "Wouf" << std::endl;
+}
+
+/* ************************************************************************** */
+/*                               Print overload                               */
+/* ************************************************************************** */
+
+std::ostream	&operator<<( std::ostream &o, const Dog &src )
+{
+	o << "Dog type: " << src.getType() << std::endl;
+	o << "Dog brain: " << src.getBrain() << std::endl;
+	o << "Dog " << *src.getBrain();
+
+	return (o);
 }

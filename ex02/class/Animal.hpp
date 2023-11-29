@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:39:03 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:51:51 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ class Animal
 		Animal( const Animal &src );
 		virtual ~Animal( void );
 
-		virtual Animal	&operator=( const Animal &src );
+		virtual Animal	&operator=( const Animal &src ) = 0;
 
 		const std::string	&getType( void ) const;
 		virtual Brain		*getBrain( void ) const = 0;
 
-		virtual void	makeSound( void ) const;
+		virtual void	makeSound( void ) const = 0;
 
 	protected:
 

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:54:30 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:35:00 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:58:37 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,28 @@
 #include "Cat.hpp"
 #include "WrongCat.hpp"
 
-int main()
+int main(void)
 {
+	{
+		Animal* meta = new Animal();
+		Animal* dog = new Dog();
+		Animal* cat = new Cat();
+		Animal meta2;
+		Dog dog2;
+		Cat cat2;
+
+		std::cout << *meta;
+		std::cout << *dog;
+		std::cout << *cat;
+		std::cout << meta2;
+		std::cout << dog2;
+		std::cout << cat2;
+
+		delete meta;
+		delete cat;
+		delete dog;
+	}
+	std::cout << std::endl;
 	{
 		Dog dog;
 		Dog dog2;

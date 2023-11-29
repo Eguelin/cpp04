@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 16:35:50 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/28 19:40:33 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/29 17:58:50 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@
 #                                   Variable                                   #
 # **************************************************************************** #
 
-NAME	= a.out
-OBJ_DIR	= .objs/
+NAME	= Animal
+OBJ_DIR	= .obj/
 CLS_DIR = class/
 SRC_DIR	= src/
 CC		= c++
@@ -38,15 +38,15 @@ BLUE	= \033[34m
 PURPLE	= \033[35m
 CYAN	= \033[36m
 WHITE	= \033[37m
-RESET	= \033[0m
+DEFAULT	= \033[0m
 
 # **************************************************************************** #
 #                                    Message                                   #
 # **************************************************************************** #
 
-COMP_MSG		= "$(GREEN)Compilation $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
-CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
-FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+COMP_MSG		= "$(GREEN)Compilation $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
+CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
+FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
 
 # **************************************************************************** #
 #                                    Sources                                   #

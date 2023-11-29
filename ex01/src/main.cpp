@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:54:30 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:32:34 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:58:16 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,28 @@
 #include "Cat.hpp"
 #include "WrongCat.hpp"
 
-int main()
+int main(void)
 {
+	{
+		Animal* meta = new Animal();
+		Animal* dog = new Dog();
+		Animal* cat = new Cat();
+		Animal meta2;
+		Dog dog2;
+		Cat cat2;
+
+		std::cout << *meta << std::endl;
+		std::cout << *dog << std::endl;
+		std::cout << *cat << std::endl;
+		std::cout << meta2 << std::endl;
+		std::cout << dog2 << std::endl;
+		std::cout << cat2;
+
+		delete meta;
+		delete cat;
+		delete dog;
+	}
+	std::cout << std::endl;
 	{
 		Dog dog;
 		Cat cat;
@@ -37,6 +57,29 @@ int main()
 		cat.makeSound();
 		std::cout << "Sound: ";
 		dog.makeSound();
+	}
+	std::cout << std::endl;
+	{
+		Cat cat;
+		Cat cat2;
+
+		cat2.getBrain()->setIdea(0, "PK");
+		cat = cat2;
+		cat2.getBrain()->setIdea(0, "Idea 0");
+
+		std::cout << "Type: " << cat.getType() << std::endl;
+		std::cout << "Type: " << cat2.getType() << std::endl;
+
+		std::cout << "Brain: " << cat.getBrain() << std::endl;
+		std::cout << "Brain: " << cat2.getBrain() << std::endl;
+
+		std::cout << "Idea: " << (*cat.getBrain()).getIdea(0) << std::endl;
+		std::cout << "Idea: " << (*cat2.getBrain()).getIdea(0) << std::endl;
+
+		std::cout << "Sound: ";
+		cat.makeSound();
+		std::cout << "Sound: ";
+		cat2.makeSound();
 	}
 	std::cout << std::endl;
 	{
@@ -92,6 +135,39 @@ int main()
 		delete meta;
 		delete cat;
 		delete dog;
+	}
+	std::cout << std::endl;
+	{
+		Animal* meta = new Animal();
+		Animal* cat = new Cat();
+		Animal* cat2 = new Cat();
+
+		cat->getBrain()->setIdea(0, "PK");
+		*cat2 = *cat;
+		cat->getBrain()->setIdea(0, "Idea 0");
+
+		std::cout << "Type: " << meta->getType() << std::endl;
+		std::cout << "Type: " << cat->getType() << std::endl;
+		std::cout << "Type: " << cat2->getType() << std::endl;
+
+		std::cout << "Brain: ";
+		meta->getBrain();
+		std::cout << "Brain: " << cat->getBrain() << std::endl;
+		std::cout << "Brain: " << cat2->getBrain() << std::endl;
+
+		std::cout << "Idea: " << (*cat->getBrain()).getIdea(0) << std::endl;
+		std::cout << "Idea: " << (*cat2->getBrain()).getIdea(0) << std::endl;
+
+		std::cout << "Sound: ";
+		cat2->makeSound();
+		std::cout << "Sound: ";
+		cat->makeSound();
+		std::cout << "Sound: ";
+		meta->makeSound();
+
+		delete meta;
+		delete cat;
+		delete cat2;
 	}
 	std::cout << std::endl;
 	{

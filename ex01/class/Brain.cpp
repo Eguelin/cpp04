@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:35:54 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:23:29 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:10:44 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ void	Brain::setIdea( int index, const std::string &idea )
 
 std::ostream	&operator<<( std::ostream &o, const Brain &src )
 {
+	o << "Brain ideas: ";
 	for (int i = 0; i < 100; i++)
-		o << "ideas: " << src.getIdea(i) << std::endl;
+		o << src.getIdea(i) << ", ";
+	o << std::endl;
 
 	return (o);
 }

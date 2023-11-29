@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:17:41 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 17:52:21 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,10 @@ Animal::~Animal( void )
 }
 
 /* ************************************************************************** */
-/*                              Operator overload                             */
-/* ************************************************************************** */
-
-Animal	&Animal::operator=( const Animal &src )
-{
-	std::cout << YELLOW_T << "Animal operator= called" << DEFAULT_T << std::endl;
-
-	this->_type = src._type;
-
-	return (*this);
-}
-
-/* ************************************************************************** */
 /*                                   Getters                                  */
 /* ************************************************************************** */
 
 const std::string	&Animal::getType( void ) const {return (this->_type);}
-
-Brain	*Animal::getBrain( void ) const
-{
-	std::cout << "Animal has no brain" << std::endl;
-
-	return (NULL);
-}
-
-/* ************************************************************************** */
-/*                           Public member functions                          */
-/* ************************************************************************** */
-
-void	Animal::makeSound( void ) const
-{
-	std::cout << "Animal sound" << std::endl;
-}
 
 /* ************************************************************************** */
 /*                               Print overload                               */
@@ -75,5 +46,12 @@ void	Animal::makeSound( void ) const
 std::ostream	&operator<<( std::ostream &o, const Animal &src )
 {
 	o << "Type: " << src.getType() << std::endl;
+	o << "Brain: ";
+	if (src.getBrain())
+	{
+		o << src.getBrain() << std::endl;
+		o << *src.getBrain();
+	}
+
 	return (o);
 }
