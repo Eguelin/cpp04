@@ -1,64 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 14:56:34 by eguelin          ###   ########lyon.fr   */
+/*   Created: 2023/11/30 16:03:32 by eguelin           #+#    #+#             */
+/*   Updated: 2023/11/30 18:31:24 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Ice.hpp"
 
 /* ************************************************************************** */
 /*                         Constructors & Destructors                         */
 /* ************************************************************************** */
 
-Animal::Animal( void ): _type("Animal")
+Ice::Ice( void ): AMateria("ice")
 {
-	std::cout << GREEN_T << "Animal default constructor called" << DEFAULT_T << std::endl;
+	std::cout << BLUE_T << "Ice default constructor called" << DEFAULT_T << std::endl;
 }
 
-Animal::Animal( const Animal &src )
+Ice::Ice( const Ice &src ): AMateria("ice")
 {
-	std::cout << GREEN_T << "Animal copy constructor called" << DEFAULT_T << std::endl;
+	std::cout << BLUE_T << "Ice copy constructor called" << DEFAULT_T << std::endl;
 
 	*this = src;
 }
 
-Animal::~Animal( void )
+Ice::~Ice( void )
 {
-	std::cout << RED_T << "Animal destructor called" << DEFAULT_T << std::endl;
+	std::cout << PURPLE_T << "Ice destructor called" << DEFAULT_T << std::endl;
 }
 
 /* ************************************************************************** */
 /*                              Operator overload                             */
 /* ************************************************************************** */
 
-Animal	&Animal::operator=( const Animal &src )
+Ice	&Ice::operator=( const Ice &src )
 {
-	std::cout << YELLOW_T << "Animal operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "Ice assignation operator called" << DEFAULT_T << std::endl;
 
-	this->_type = src._type;
+	if (this != &src)
+		this->_type = src.getType();
 
 	return (*this);
 }
 
 /* ************************************************************************** */
-/*                                   Getters                                  */
+/*                           Public member functions                          */
 /* ************************************************************************** */
 
-const std::string	&Animal::getType( void ) const {return (this->_type);}
-
-/* ************************************************************************** */
-/*                               Print overload                               */
-/* ************************************************************************** */
-
-std::ostream	&operator<<( std::ostream &o, const Animal &src )
+AMateria	*Ice::clone( void ) const
 {
-	o << "Type: " << src.getType() << std::endl;
+	return(new Ice(*this));
+}
 
-	return (o);
+void	Ice::use( ICharacter &target )
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

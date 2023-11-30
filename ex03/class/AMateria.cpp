@@ -1,47 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 14:56:34 by eguelin          ###   ########lyon.fr   */
+/*   Created: 2023/11/30 14:17:50 by eguelin           #+#    #+#             */
+/*   Updated: 2023/11/30 17:32:27 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AMateria.hpp"
 
 /* ************************************************************************** */
 /*                         Constructors & Destructors                         */
 /* ************************************************************************** */
 
-Animal::Animal( void ): _type("Animal")
+AMateria::AMateria( void ): _type("default")
 {
-	std::cout << GREEN_T << "Animal default constructor called" << DEFAULT_T << std::endl;
+	std::cout << GREEN_T << "AMateria default constructor called" << DEFAULT_T << std::endl;
 }
 
-Animal::Animal( const Animal &src )
+AMateria::AMateria( const AMateria &src )
 {
-	std::cout << GREEN_T << "Animal copy constructor called" << DEFAULT_T << std::endl;
+	std::cout << GREEN_T << "AMateria copy constructor called" << DEFAULT_T << std::endl;
 
 	*this = src;
 }
 
-Animal::~Animal( void )
+AMateria::AMateria( const std::string &type ): _type(type)
 {
-	std::cout << RED_T << "Animal destructor called" << DEFAULT_T << std::endl;
+	std::cout << GREEN_T << "AMateria constructor called" << DEFAULT_T << std::endl;
+}
+
+AMateria::~AMateria( void )
+{
+	std::cout << RED_T << "AMateria destructor called" << DEFAULT_T << std::endl;
 }
 
 /* ************************************************************************** */
 /*                              Operator overload                             */
 /* ************************************************************************** */
 
-Animal	&Animal::operator=( const Animal &src )
+AMateria	&AMateria::operator=( const AMateria &src )
 {
-	std::cout << YELLOW_T << "Animal operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "AMateria assignation operator called" << DEFAULT_T << std::endl;
 
-	this->_type = src._type;
+	if (this != &src)
+		this->_type = src.getType();
 
 	return (*this);
 }
@@ -50,13 +56,22 @@ Animal	&Animal::operator=( const Animal &src )
 /*                                   Getters                                  */
 /* ************************************************************************** */
 
-const std::string	&Animal::getType( void ) const {return (this->_type);}
+const std::string	&AMateria::getType( void ) const {return (this->_type);}
+
+/* ************************************************************************** */
+/*                           Public member functions                          */
+/* ************************************************************************** */
+
+void	AMateria::use( ICharacter &target )
+{
+	(void)target;
+}
 
 /* ************************************************************************** */
 /*                               Print overload                               */
 /* ************************************************************************** */
 
-std::ostream	&operator<<( std::ostream &o, const Animal &src )
+std::ostream	&operator<<( std::ostream &o, const AMateria &src )
 {
 	o << "Type: " << src.getType() << std::endl;
 

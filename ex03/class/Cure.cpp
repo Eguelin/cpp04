@@ -1,64 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 14:56:34 by eguelin          ###   ########lyon.fr   */
+/*   Created: 2023/11/30 16:04:02 by eguelin           #+#    #+#             */
+/*   Updated: 2023/11/30 18:31:15 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Cure.hpp"
 
 /* ************************************************************************** */
 /*                         Constructors & Destructors                         */
 /* ************************************************************************** */
 
-Animal::Animal( void ): _type("Animal")
+Cure::Cure( void ): AMateria("cure")
 {
-	std::cout << GREEN_T << "Animal default constructor called" << DEFAULT_T << std::endl;
+	std::cout << BLUE_T << "Cure default constructor called" << DEFAULT_T << std::endl;
 }
 
-Animal::Animal( const Animal &src )
+Cure::Cure( const Cure &src ): AMateria("cure")
 {
-	std::cout << GREEN_T << "Animal copy constructor called" << DEFAULT_T << std::endl;
+	std::cout << BLUE_T << "Cure copy constructor called" << DEFAULT_T << std::endl;
 
 	*this = src;
 }
 
-Animal::~Animal( void )
+Cure::~Cure( void )
 {
-	std::cout << RED_T << "Animal destructor called" << DEFAULT_T << std::endl;
+	std::cout << PURPLE_T << "Cure destructor called" << DEFAULT_T << std::endl;
 }
 
 /* ************************************************************************** */
 /*                              Operator overload                             */
 /* ************************************************************************** */
 
-Animal	&Animal::operator=( const Animal &src )
+Cure	&Cure::operator=( const Cure &src )
 {
-	std::cout << YELLOW_T << "Animal operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "Cure assignation operator called" << DEFAULT_T << std::endl;
 
-	this->_type = src._type;
+	if (this != &src)
+		this->_type = src.getType();
 
 	return (*this);
 }
 
 /* ************************************************************************** */
-/*                                   Getters                                  */
+/*                           Public member functions                          */
 /* ************************************************************************** */
 
-const std::string	&Animal::getType( void ) const {return (this->_type);}
-
-/* ************************************************************************** */
-/*                               Print overload                               */
-/* ************************************************************************** */
-
-std::ostream	&operator<<( std::ostream &o, const Animal &src )
+AMateria	*Cure::clone( void ) const
 {
-	o << "Type: " << src.getType() << std::endl;
+	return(new Cure(*this));
+}
 
-	return (o);
+void	Cure::use( ICharacter &target )
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
