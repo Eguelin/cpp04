@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:35:54 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/29 17:10:44 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/30 11:48:45 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Brain::Brain( void )
 	for (int i = 0; i < 100; i++)
 	{
 		ss << i;
-		this->_ideas[i] = "idea_" + ss.str();
+		this->_ideas[i] = "idea" + ss.str();
 		ss.str("");
 	}
 }
@@ -64,7 +64,11 @@ Brain	&Brain::operator=( const Brain &src )
 const std::string	&Brain::getIdea( int index ) const
 {
 	if (index < 0 || index >= 100)
+	{
 		std::cerr << RED_T << "Error: index out of range" << DEFAULT_T << std::endl;
+
+		return (this->_ideas[0]);
+	}
 
 	return (this->_ideas[index]);
 }
@@ -72,7 +76,11 @@ const std::string	&Brain::getIdea( int index ) const
 void	Brain::setIdea( int index, const std::string &idea )
 {
 	if (index < 0 || index >= 100)
+	{
 		std::cerr << RED_T << "Error: index out of range" << DEFAULT_T << std::endl;
+
+		return ;
+	}
 
 	this->_ideas[index] = idea;
 }
@@ -84,9 +92,9 @@ void	Brain::setIdea( int index, const std::string &idea )
 std::ostream	&operator<<( std::ostream &o, const Brain &src )
 {
 	o << "Brain ideas: ";
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 99; i++)
 		o << src.getIdea(i) << ", ";
-	o << std::endl;
+	o << src.getIdea(99)  << std::endl;
 
 	return (o);
 }

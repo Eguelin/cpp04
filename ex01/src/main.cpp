@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:54:30 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/29 17:58:16 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/30 11:43:14 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,27 @@
 int main(void)
 {
 	{
-		Animal* meta = new Animal();
-		Animal* dog = new Dog();
-		Animal* cat = new Cat();
-		Animal meta2;
-		Dog dog2;
-		Cat cat2;
+		const Animal* meta[6];
+
+		for (int i = 0; i < 6; i++)
+		{
+			if (i % 2 == 0)
+				meta[i] = new Dog();
+			else
+				meta[i] = new Cat();
+		}
+
+		for (int i = 0; i < 6; i++)
+			delete meta[i];
+	}
+	std::cout << std::endl;
+	{
+		const Animal* meta = new Animal();
+		const Animal* dog = new Dog();
+		const Animal* cat = new Cat();
+		const Animal meta2;
+		const Dog dog2;
+		const Cat cat2;
 
 		std::cout << *meta << std::endl;
 		std::cout << *dog << std::endl;
@@ -37,44 +52,15 @@ int main(void)
 	}
 	std::cout << std::endl;
 	{
-		Dog dog;
-		Cat cat;
-
-		dog.getBrain()->setIdea(0, "PK");
-		cat = dog;
-		dog.getBrain()->setIdea(0, "Idea 0");
-
-		std::cout << "Type: " << dog.getType() << std::endl;
-		std::cout << "Type: " << cat.getType() << std::endl;
-
-		std::cout << "Brain: " << dog.getBrain() << std::endl;
-		std::cout << "Brain: " << cat.getBrain() << std::endl;
-
-		std::cout << "Idea: " << (*dog.getBrain()).getIdea(0) << std::endl;
-		std::cout << "Idea: " << (*cat.getBrain()).getIdea(0) << std::endl;
-
-		std::cout << "Sound: ";
-		cat.makeSound();
-		std::cout << "Sound: ";
-		dog.makeSound();
-	}
-	std::cout << std::endl;
-	{
 		Cat cat;
 		Cat cat2;
 
 		cat2.getBrain()->setIdea(0, "PK");
 		cat = cat2;
-		cat2.getBrain()->setIdea(0, "Idea 0");
+		cat2.getBrain()->setIdea(0, "Idea0");
 
-		std::cout << "Type: " << cat.getType() << std::endl;
-		std::cout << "Type: " << cat2.getType() << std::endl;
-
-		std::cout << "Brain: " << cat.getBrain() << std::endl;
-		std::cout << "Brain: " << cat2.getBrain() << std::endl;
-
-		std::cout << "Idea: " << (*cat.getBrain()).getIdea(0) << std::endl;
-		std::cout << "Idea: " << (*cat2.getBrain()).getIdea(0) << std::endl;
+		std::cout << cat << std::endl;
+		std::cout << cat2 << std::endl;
 
 		std::cout << "Sound: ";
 		cat.makeSound();
@@ -87,16 +73,10 @@ int main(void)
 
 		cat.getBrain()->setIdea(0, "PK");
 		Cat cat2(cat);
-		cat.getBrain()->setIdea(0, "Idea 0");
+		cat.getBrain()->setIdea(0, "Idea0");
 
-		std::cout << "Type: " << cat.getType() << std::endl;
-		std::cout << "Type: " << cat2.getType() << std::endl;
-
-		std::cout << "Brain: " << cat.getBrain() << std::endl;
-		std::cout << "Brain: " << cat2.getBrain() << std::endl;
-
-		std::cout << "Idea: " << (*cat.getBrain()).getIdea(0) << std::endl;
-		std::cout << "Idea: " << (*cat2.getBrain()).getIdea(0) << std::endl;
+		std::cout << cat << std::endl;
+		std::cout << cat2 << std::endl;
 
 		std::cout << "Sound: ";
 		cat.makeSound();
@@ -105,25 +85,27 @@ int main(void)
 	}
 	std::cout << std::endl;
 	{
-		Animal* meta = new Animal();
-		Animal* dog = new Dog();
+		Dog dog;
+
+		dog.getBrain()->setIdea(0, "PK");
+		dog.getBrain()->setIdea(-1, "PK");
+		dog.getBrain()->setIdea(100, "PK");
+
+		std::cout << dog.getBrain()->getIdea(0) << std::endl;
+		std::cout << dog.getBrain()->getIdea(-1) << std::endl;
+		std::cout << dog.getBrain()->getIdea(100) << std::endl;
+	}
+	std::cout << std::endl;
+	{
+		const Animal* meta = new Animal();
+		const Animal* dog = new Dog();
 		Animal* cat = new Cat();
 
-		dog->getBrain()->setIdea(0, "PK");
 		*cat = *dog;
-		dog->getBrain()->setIdea(0, "Idea 0");
 
 		std::cout << "Type: " << meta->getType() << std::endl;
 		std::cout << "Type: " << dog->getType() << std::endl;
 		std::cout << "Type: " << cat->getType() << std::endl;
-
-		std::cout << "Brain: ";
-		meta->getBrain();
-		std::cout << "Brain: " << dog->getBrain() << std::endl;
-		std::cout << "Brain: " << cat->getBrain() << std::endl;
-
-		std::cout << "Idea: " << (*dog->getBrain()).getIdea(0) << std::endl;
-		std::cout << "Idea: " << (*cat->getBrain()).getIdea(0) << std::endl;
 
 		std::cout << "Sound: ";
 		cat->makeSound();
@@ -138,50 +120,13 @@ int main(void)
 	}
 	std::cout << std::endl;
 	{
-		Animal* meta = new Animal();
-		Animal* cat = new Cat();
-		Animal* cat2 = new Cat();
-
-		cat->getBrain()->setIdea(0, "PK");
-		*cat2 = *cat;
-		cat->getBrain()->setIdea(0, "Idea 0");
-
-		std::cout << "Type: " << meta->getType() << std::endl;
-		std::cout << "Type: " << cat->getType() << std::endl;
-		std::cout << "Type: " << cat2->getType() << std::endl;
-
-		std::cout << "Brain: ";
-		meta->getBrain();
-		std::cout << "Brain: " << cat->getBrain() << std::endl;
-		std::cout << "Brain: " << cat2->getBrain() << std::endl;
-
-		std::cout << "Idea: " << (*cat->getBrain()).getIdea(0) << std::endl;
-		std::cout << "Idea: " << (*cat2->getBrain()).getIdea(0) << std::endl;
-
-		std::cout << "Sound: ";
-		cat2->makeSound();
-		std::cout << "Sound: ";
-		cat->makeSound();
-		std::cout << "Sound: ";
-		meta->makeSound();
-
-		delete meta;
-		delete cat;
-		delete cat2;
-	}
-	std::cout << std::endl;
-	{
+		const Animal	meta;
 		Animal* dog = new Dog();
-		Animal	meta;
 
 		*dog = meta;
 
 		std::cout << "Type: " << meta.getType() << std::endl;
 		std::cout << "Type: " << dog->getType() << std::endl;
-
-		std::cout << "Brain: ";
-		meta.getBrain();
-		std::cout << "Brain: " << dog->getBrain() << std::endl;
 
 		std::cout << "Sound: ";
 		dog->makeSound();

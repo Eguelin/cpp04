@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:35:49 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/29 17:53:23 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/30 11:24:11 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,6 @@ Cat		&Cat::operator=( const Cat &src )
 	return (*this);
 }
 
-Animal	&Cat::operator=( const Animal &src )
-{
-	std::cout << YELLOW_T << "Cat::Animal operator= called" << DEFAULT_T << std::endl;
-
-	if (this != &src)
-	{
-		this->_type = src.getType();
-		*this->_brain = *src.getBrain();
-	}
-
-	return (*this);
-}
-
 /* ************************************************************************** */
 /*                                   Getters                                  */
 /* ************************************************************************** */
@@ -90,9 +77,9 @@ void	Cat::makeSound( void ) const
 
 std::ostream	&operator<<( std::ostream &o, const Cat &src )
 {
-	o << "Cat type: " << src.getType() << std::endl;
-	o << "Cat brain: " << src.getBrain() << std::endl;
-	o << "Cat " << *src.getBrain();
+	o << "Type: " << src.getType() << std::endl;
+	o << "Brain: " << src.getBrain() << std::endl;
+	o << *src.getBrain();
 
 	return (o);
 }

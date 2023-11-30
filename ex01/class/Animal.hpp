@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/29 16:59:34 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 16:59:44 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ANIMAL_HPP
 
 # include <iostream>
-# include "Brain.hpp"
 
 # define DEFAULT_T "\033[0m"
 # define RED_T "\033[31m"
@@ -29,10 +28,9 @@ class Animal
 		Animal( const Animal &src );
 		virtual ~Animal( void );
 
-		virtual Animal	&operator=( const Animal &src );
+		Animal	&operator=( const Animal &src );
 
 		const std::string	&getType( void ) const;
-		virtual Brain		*getBrain( void ) const;
 
 		virtual void	makeSound( void ) const;
 

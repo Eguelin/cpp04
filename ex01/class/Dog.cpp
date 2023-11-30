@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:34:16 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/29 17:45:50 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/30 11:25:01 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,6 @@ Dog		&Dog::operator=( const Dog &src )
 	return (*this);
 }
 
-Animal	&Dog::operator=( const Animal &src )
-{
-	std::cout << YELLOW_T << "Dog::Animal operator= called" << DEFAULT_T << std::endl;
-	if (this != &src)
-	{
-		this->_type = src.getType();
-
-		if (!src.getBrain())
-			return (*this);
-
-		*this->_brain = *src.getBrain();
-	}
-
-	return (*this);
-}
-
 /* ************************************************************************** */
 /*                                   Getters                                  */
 /* ************************************************************************** */
@@ -93,9 +77,9 @@ void	Dog::makeSound( void ) const
 
 std::ostream	&operator<<( std::ostream &o, const Dog &src )
 {
-	o << "Dog type: " << src.getType() << std::endl;
-	o << "Dog brain: " << src.getBrain() << std::endl;
-	o << "Dog " << *src.getBrain();
+	o << "Type: " << src.getType() << std::endl;
+	o << "Brain: " << src.getBrain() << std::endl;
+	o << *src.getBrain();
 
 	return (o);
 }
