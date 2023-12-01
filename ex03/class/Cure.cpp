@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:04:02 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 18:31:15 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 12:57:18 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,12 @@ Cure::Cure( const Cure &src ): AMateria("cure")
 {
 	std::cout << BLUE_T << "Cure copy constructor called" << DEFAULT_T << std::endl;
 
-	*this = src;
+	(void)src;
 }
 
 Cure::~Cure( void )
 {
 	std::cout << PURPLE_T << "Cure destructor called" << DEFAULT_T << std::endl;
-}
-
-/* ************************************************************************** */
-/*                              Operator overload                             */
-/* ************************************************************************** */
-
-Cure	&Cure::operator=( const Cure &src )
-{
-	std::cout << YELLOW_T << "Cure assignation operator called" << DEFAULT_T << std::endl;
-
-	if (this != &src)
-		this->_type = src.getType();
-
-	return (*this);
 }
 
 /* ************************************************************************** */

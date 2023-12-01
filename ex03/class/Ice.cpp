@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:03:32 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 18:31:24 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 12:56:39 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,12 @@ Ice::Ice( const Ice &src ): AMateria("ice")
 {
 	std::cout << BLUE_T << "Ice copy constructor called" << DEFAULT_T << std::endl;
 
-	*this = src;
+	(void)src;
 }
 
 Ice::~Ice( void )
 {
 	std::cout << PURPLE_T << "Ice destructor called" << DEFAULT_T << std::endl;
-}
-
-/* ************************************************************************** */
-/*                              Operator overload                             */
-/* ************************************************************************** */
-
-Ice	&Ice::operator=( const Ice &src )
-{
-	std::cout << YELLOW_T << "Ice assignation operator called" << DEFAULT_T << std::endl;
-
-	if (this != &src)
-		this->_type = src.getType();
-
-	return (*this);
 }
 
 /* ************************************************************************** */

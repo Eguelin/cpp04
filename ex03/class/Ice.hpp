@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:03:32 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 18:31:29 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 12:56:44 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class Ice: public AMateria
 		Ice( void );
 		Ice( const Ice &src );
 		~Ice( void );
-
-		Ice	&operator=( const Ice &src );
 
 		AMateria*	clone( void ) const;
 		void		use( ICharacter &target );

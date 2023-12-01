@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:17:50 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 17:32:27 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:16:21 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@
 /*                         Constructors & Destructors                         */
 /* ************************************************************************** */
 
-AMateria::AMateria( void ): _type("default")
+AMateria::AMateria( void )
 {
-	std::cout << GREEN_T << "AMateria default constructor called" << DEFAULT_T << std::endl;
 }
 
 AMateria::AMateria( const AMateria &src )
 {
-	std::cout << GREEN_T << "AMateria copy constructor called" << DEFAULT_T << std::endl;
-
-	*this = src;
+	(void)src;
 }
 
-AMateria::AMateria( const std::string &type ): _type(type)
+AMateria::AMateria( const std::string &type ): _type(type), _equiped(false)
 {
 	std::cout << GREEN_T << "AMateria constructor called" << DEFAULT_T << std::endl;
 }
@@ -46,17 +43,20 @@ AMateria	&AMateria::operator=( const AMateria &src )
 {
 	std::cout << YELLOW_T << "AMateria assignation operator called" << DEFAULT_T << std::endl;
 
-	if (this != &src)
-		this->_type = src.getType();
+	(void)src;
 
 	return (*this);
 }
 
 /* ************************************************************************** */
-/*                                   Getters                                  */
+/*                              Getters & Setters                             */
 /* ************************************************************************** */
 
 const std::string	&AMateria::getType( void ) const {return (this->_type);}
+
+bool	AMateria::getEquiped( void ) const {return (this->_equiped);}
+
+void	AMateria::setEquiped( bool equiped ) {this->_equiped = equiped;}
 
 /* ************************************************************************** */
 /*                           Public member functions                          */

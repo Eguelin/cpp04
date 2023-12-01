@@ -1,61 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.cpp                                      :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 17:13:40 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/01 16:07:06 by eguelin          ###   ########lyon.fr   */
+/*   Created: 2023/12/01 13:07:52 by eguelin           #+#    #+#             */
+/*   Updated: 2023/12/01 15:35:18 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp"
+#include "MateriaSource.hpp"
 
 /* ************************************************************************** */
 /*                         Constructors & Destructors                         */
 /* ************************************************************************** */
 
-Character::Character( void ): _name("default")
+MateriaSource::MateriaSource( void )
 {
-	std::cout << GREEN_T << "Character default constructor called" << DEFAULT_T << std::endl;
+	std::cout << GREEN_T << "MateriaSource default constructor called" << DEFAULT_T << std::endl;
 
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
 }
 
-Character::Character( const std::string &name ): _name(name)
+MateriaSource::MateriaSource( const MateriaSource &src )
 {
-	std::cout << GREEN_T << "Character constructor called" << DEFAULT_T << std::endl;
+	std::cout << GREEN_T << "MateriaSource copy constructor called" << DEFAULT_T << std::endl;
 
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
-}
-
-Character::Character( const Character &src )
-{
-	std::cout << GREEN_T << "Character copy constructor called" << DEFAULT_T << std::endl;
 
 	*this = src;
 }
 
-Character::~Character( void )
+MateriaSource::~MateriaSource( void )
 {
-	std::cout << RED_T << "Character destructor called" << DEFAULT_T << std::endl;
+	std::cout << RED_T << "MateriaSource destructor called" << DEFAULT_T << std::endl;
 }
 
 /* ************************************************************************** */
 /*                              Operator overload                             */
 /* ************************************************************************** */
 
-Character	&Character::operator=( const Character &src )
+MateriaSource	&MateriaSource::operator=( const MateriaSource &src )
 {
-	std::cout << YELLOW_T << "Character assignation operator called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "MateriaSource assignation operator called" << DEFAULT_T << std::endl;
 
 	if (this == &src)
 		return (*this);
-
-	this->_name = src.getName();
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -72,15 +65,13 @@ Character	&Character::operator=( const Character &src )
 /*                                   Getters                                  */
 /* ************************************************************************** */
 
-const std::string	&Character::getName( void ) const {return(this->_name);}
-
-const AMateria		*const *Character::getInventory( void ) const {return(this->_inventory);}
+const AMateria		*const *MateriaSource::getInventory( void ) const {return(this->_inventory);}
 
 /* ************************************************************************** */
 /*                           Public member functions                          */
 /* ************************************************************************** */
 
-void	Character::equip( AMateria *m )
+void	MateriaSource::learnMateria( AMateria *m )
 {
 	if (!m | m->getEquiped())
 		return ;
@@ -90,7 +81,7 @@ void	Character::equip( AMateria *m )
 		if (this->_inventory[i])
 			continue;
 
-		std::cout << this->_name << " equiped " << m->getType() << std::endl;
+		std::cout << "MateriaSource learn materia: " << m->getType() << std::endl;
 
 		this->_inventory[i] = m;
 		m->setEquiped(true);
@@ -99,46 +90,28 @@ void	Character::equip( AMateria *m )
 	}
 }
 
-void	Character::unequip( int idx )
+AMateria*	MateriaSource::createMateria( const std::string &type )
 {
-	if (idx < 0 || idx > 3)
-		return ;
-
-	if (this->_inventory[idx])
+	for (int i = 0; i < 4; i++)
 	{
-		std::cout << this->_name << " unequiped " << this->_inventory[idx]->getType() << std::endl;
+		if (this->_inventory[i]->getType() != type)
+			continue;
 
-		this->_inventory[idx]->setEquiped(false);
-		this->_inventory[idx] = NULL;
+		std::cout << "MateriaSource create materia: " << this->_inventory[i]->getType() << std::endl;
+
+		return (this->_inventory[i]->clone());
 	}
-}
 
-void	Character::use( int idx, ICharacter &target )
-{
-	if (idx < 0 || idx > 3)
-		return ;
-
-	if (this->_inventory[idx])
-		this->_inventory[idx]->use(target);
-
-	delete this->_inventory[idx];
-	this->_inventory[idx] = NULL;
+	return (NULL);
 }
 
 /* ************************************************************************** */
 /*                               Print overload                               */
 /* ************************************************************************** */
 
-std::ostream	&operator<<( std::ostream &o, const ICharacter &src )
+std::ostream	&operator<<( std::ostream &o, const MateriaSource &src )
 {
-	o << "Name: " << src.getName() << std::endl;
-
-	return (o);
-}
-
-std::ostream	&operator<<( std::ostream &o, const Character &src )
-{
-	o << "Name: " << src.getName() << std::endl;
+	o << "MateriaSource" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (src.getInventory()[i])

@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 13:36:32 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/30 19:02:38 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/12/01 15:26:51 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CLS_DIR = class/
 SRC_DIR	= src/
 INC_DIR	= include/
 CC		= c++
-CFLAGS	= -Wall -Werror -Wextra -std=c++98
+CFLAGS	= -Wall -Werror -Wextra -std=c++98 -g3
 INC		= -I $(INC_DIR) -I $(CLS_DIR)
 RM		= rm -fr
 
@@ -56,7 +56,8 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 CLS_FILES	= AMateria.cpp \
 			  Character.cpp \
 			  Ice.cpp \
-			  Cure.cpp
+			  Cure.cpp \
+			  MateriaSource.cpp
 
 ALL_FILES	= $(addprefix $(CLS_DIR), $(CLS_FILES))
 
