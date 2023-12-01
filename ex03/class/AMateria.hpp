@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:17:50 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/01 15:23:06 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 18:55:23 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AMATERIA_HPP
 
 # include "ICharacter.hpp"
+# include "Floor.hpp"
 
 # define DEFAULT_T "\033[0m"
 # define RED_T "\033[31m"

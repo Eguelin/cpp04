@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:13:40 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/01 16:07:06 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 19:13:26 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ Character::Character( void ): _name("default")
 
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
+
+	Floor::incrementNbCharacters();
 }
 
 Character::Character( const std::string &name ): _name(name)
@@ -42,6 +44,17 @@ Character::Character( const Character &src )
 Character::~Character( void )
 {
 	std::cout << RED_T << "Character destructor called" << DEFAULT_T << std::endl;
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_inventory[i])
+		{
+			this->_inventory[i]->setEquiped(false);
+			Floor::pushMateria(this->_inventory[i]);
+		}
+	}
+
+	Floor::decrementNbCharacters();
 }
 
 /* ************************************************************************** */
@@ -92,6 +105,7 @@ void	Character::equip( AMateria *m )
 
 		std::cout << this->_name << " equiped " << m->getType() << std::endl;
 
+		Floor::takeMateria(m);
 		this->_inventory[i] = m;
 		m->setEquiped(true);
 
@@ -109,6 +123,7 @@ void	Character::unequip( int idx )
 		std::cout << this->_name << " unequiped " << this->_inventory[idx]->getType() << std::endl;
 
 		this->_inventory[idx]->setEquiped(false);
+		Floor::pushMateria(this->_inventory[idx]);
 		this->_inventory[idx] = NULL;
 	}
 }

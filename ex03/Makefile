@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 13:36:32 by eguelin           #+#    #+#              #
-#    Updated: 2023/12/01 15:26:51 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/12/01 18:23:27 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 CLS_FILES	= AMateria.cpp \
 			  Character.cpp \
 			  Ice.cpp \
+			  Floor.cpp \
 			  Cure.cpp \
 			  MateriaSource.cpp
 
