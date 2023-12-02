@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:07:52 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/02 13:16:45 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 17:17:37 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ const AMateria		*const *MateriaSource::getInventory( void ) const {return(this->
 
 void	MateriaSource::learnMateria( AMateria *m )
 {
-	if (!m | m->getEquiped())
+	if (!m || m->getEquiped())
 		return ;
 
 	for (int i = 0; i < 4; i++)

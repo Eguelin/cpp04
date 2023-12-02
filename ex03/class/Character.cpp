@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:13:40 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/02 14:07:01 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 17:17:08 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ const AMateria		*const *Character::getInventory( void ) const {return(this->_inv
 
 void	Character::equip( AMateria *m )
 {
-	if (!m | m->getEquiped())
+	if (!m || m->getEquiped())
 		return ;
 
 	for (int i = 0; i < 4; i++)
