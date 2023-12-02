@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:07:52 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/01 19:13:33 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 13:16:45 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ MateriaSource::MateriaSource( void )
 
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
-
-	Floor::incrementNbMateriaSources();
 }
 
 MateriaSource::MateriaSource( const MateriaSource &src )
@@ -31,8 +29,6 @@ MateriaSource::MateriaSource( const MateriaSource &src )
 	std::cout << GREEN_T << "MateriaSource copy constructor called" << DEFAULT_T << std::endl;
 
 	*this = src;
-
-	Floor::incrementNbMateriaSources();
 }
 
 MateriaSource::~MateriaSource( void )
@@ -47,8 +43,6 @@ MateriaSource::~MateriaSource( void )
 			Floor::pushMateria(this->_inventory[i]);
 		}
 	}
-
-	Floor::decrementNbMateriaSources();
 }
 
 /* ************************************************************************** */

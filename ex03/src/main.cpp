@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:32:47 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/01 19:25:47 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 14:05:00 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,47 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
+Floor	gFloor;
+
 int main( void )
 {
-	IMateriaSource* src = new MateriaSource();
+	IMateriaSource	*src = new MateriaSource();
+
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-	ICharacter* me = new Character("me");
-	AMateria* tmp;
+
+	ICharacter	*me = new Character("me");
+	AMateria	*tmp;
+
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	src->learnMateria(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
-	ICharacter* bob = new Character("bob");
+
+	ICharacter	*bob = new Character("bob");
+
 	me->use(0, *bob);
 	me->use(1, *bob);
+
 	delete bob;
 	delete me;
 	delete src;
-	return 0;
+
+	return (0);
 }
 
 // int main( void )
 // {
+// 	ICharacter	*bob = new Character("bob");
+// 	ICharacter	*bob2 = new Character("bob2");
 // 	AMateria	*ice = new Ice();
 // 	AMateria	*ice2 = ice->clone();
 // 	AMateria	*ice3 = ice->clone();
 // 	AMateria	*cure = new Cure();
 // 	AMateria	*cure2 = cure->clone();
 
+// 	std::cout << std::endl;
 // 	std::cout << "ice: " << ice << std::endl;
 // 	std::cout << *ice;
 // 	std::cout << "ice2: " << ice2 << std::endl;
@@ -55,64 +67,39 @@ int main( void )
 // 	std::cout << *cure;
 // 	std::cout << "cure2: " << cure2 << std::endl;
 // 	std::cout << *cure2;
+// 	std::cout << "ice3: " << ice3 << std::endl;
+// 	std::cout << *ice3;
 // 	std::cout << std::endl;
 
-// 	ICharacter	*max = new Character("Max");
+// 	bob->equip(ice);
+// 	bob->equip(ice2);
+// 	bob->equip(ice3);
+// 	bob->equip(cure);
+// 	bob->equip(cure2);
 
-// 	max->unequip(1);
-// 	max->equip(ice);
-// 	max->equip(ice);
-// 	max->equip(cure);
-// 	max->equip(ice2);
-// 	max->equip(cure2);
-// 	max->equip(ice3);
-// 	max->unequip(1);
-// 	max->unequip(1);
-// 	max->use(1, *max);
-// 	max->equip(ice3);
-// 	max->use(0, *max);
-// 	max->use(-1, *max);
-// 	max->use(4, *max);
+// 	std::cout << *bob;
 
-// 	std::cout << "max: " << max << std::endl;
-// 	std::cout << *max;
-// 	std::cout << std::endl;
+// 	bob->use(0, *bob);
+// 	bob->use(0, *bob);
+// 	bob->use(-1, *bob);
+// 	bob->use(10, *bob);
 
-// 	Character	mika("Mika");
+// 	bob->unequip(1);
+// 	bob->unequip(1);
+// 	bob->unequip(-1);
 
-// 	mika.unequip(0);
-// 	mika.equip(ice);
-// 	mika.equip(cure);
-// 	mika.equip(ice2);
-// 	mika.equip(cure2);
-// 	mika.equip(ice3);
+// 	bob->use(1, *bob);
 
-// 	mika.unequip(1);
-// 	mika.unequip(1);
-// 	mika.unequip(-1);
-// 	mika.unequip(4);
-
-// 	mika.use(0, *max);
-// 	mika.use(1, *max);
-// 	mika.use(-1, *max);
-// 	mika.use(4, *max);
-
-// 	mika.equip(ice3);
+// 	bob->equip(cure2);
 
 // 	std::cout << std::endl;
 
-// 	Character mika2(mika);
-
-// 	mika2.unequip(0);
-
-// 	std::cout << mika;
-// 	std::cout << mika2 << std::endl;
-
-// 	delete ice;
+// 	delete bob;
+// 	delete bob2;
 // 	delete ice2;
+// 	delete ice3;
 // 	delete cure;
 // 	delete cure2;
-// 	delete max;
 
 // 	return (0);
 // }

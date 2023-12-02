@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:13:40 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/01 19:13:26 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 14:07:01 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ Character::Character( void ): _name("default")
 
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
-
-	Floor::incrementNbCharacters();
 }
 
 Character::Character( const std::string &name ): _name(name)
@@ -53,8 +51,6 @@ Character::~Character( void )
 			Floor::pushMateria(this->_inventory[i]);
 		}
 	}
-
-	Floor::decrementNbCharacters();
 }
 
 /* ************************************************************************** */
@@ -72,6 +68,11 @@ Character	&Character::operator=( const Character &src )
 
 	for (int i = 0; i < 4; i++)
 	{
+		if (this->_inventory[i])
+		{
+			this->_inventory[i]->setEquiped(false);
+			Floor::pushMateria(this->_inventory[i]);
+		}
 		if (src._inventory[i])
 			this->_inventory[i] = src._inventory[i]->clone();
 		else

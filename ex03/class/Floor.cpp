@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:13:29 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/01 19:09:44 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 13:42:35 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,61 +16,38 @@
 /*                                 Destructors                                */
 /* ************************************************************************** */
 
-Floor::~Floor( void )
+Floor::Floor( void ): _materia(NULL), _prev(NULL), _next(NULL)
 {
-	delete this->_materia;
+	std::cout << GREEN_T << "Floor default constructor called" << DEFAULT_T << std::endl;
+
+	if (!Floor::_isInit)
+	{
+		Floor::_isInit = true;
+		this->_isPrimary = true;
+	}
+	else
+		this->_isPrimary = false;
 }
 
-/* ************************************************************************** */
-/*                              Operator overload                             */
-/* ************************************************************************** */
-
-Floor	&Floor::operator=( const Floor &src )
+Floor::~Floor( void )
 {
-	(void)src;
+	std::cout << RED_T << "Floor destructor called" << DEFAULT_T << std::endl;
 
-	return (*this);
+	if (this->_isPrimary)
+		Floor::clearFloor();
+	else if (this->_materia)
+		delete this->_materia;
 }
 
 /* ************************************************************************** */
 /*                       Public static member functions                       */
 /* ************************************************************************** */
 
-void	Floor::incrementNbCharacters( void )
-{
-	Floor::_nbCharacters++;
-}
-
-void	Floor::decrementNbCharacters( void )
-{
-	if (Floor::_nbCharacters)
-	{
-		Floor::_nbCharacters--;
-		if (!Floor::_nbCharacters && !Floor::_nbMateriaSources)
-			Floor::clearFloor();
-	}
-}
-
-void	Floor::incrementNbMateriaSources( void )
-{
-	Floor::_nbMateriaSources++;
-}
-
-void	Floor::decrementNbMateriaSources( void )
-{
-	if (Floor::_nbMateriaSources)
-	{
-		Floor::_nbMateriaSources--;
-		if (!Floor::_nbCharacters && !Floor::_nbMateriaSources)
-			Floor::clearFloor();
-	}
-}
-
 void	Floor::pushMateria( AMateria *materia )
 {
 	Floor	*tmp = Floor::_first;
 
-	if (!materia | materia->getEquiped())
+	if (!Floor::_isInit || !materia || materia->getEquiped())
 		return ;
 
 	if (!Floor::_first)
@@ -96,7 +73,7 @@ void	Floor::takeMateria( AMateria *materia )
 {
 	Floor	*tmp = Floor::_first;
 
-	if (!materia)
+	if (!Floor::_isInit || !materia)
 		return ;
 
 	while (tmp)
@@ -137,12 +114,9 @@ void	Floor::clearFloor( void )
 /*                             Private constructor                            */
 /* ************************************************************************** */
 
-Floor::Floor( void )
+Floor::Floor( AMateria *materia ): _isPrimary(false), _materia(materia), _prev(NULL), _next(NULL)
 {
-}
-
-Floor::Floor( AMateria *materia ) : _materia(materia), _prev(NULL), _next(NULL)
-{
+	std::cout << GREEN_T << "Floor parametric constructor called" << DEFAULT_T << std::endl;
 }
 
 Floor::Floor( const Floor &src )
@@ -151,9 +125,19 @@ Floor::Floor( const Floor &src )
 }
 
 /* ************************************************************************** */
+/*                          Private operator overload                         */
+/* ************************************************************************** */
+
+Floor	&Floor::operator=( const Floor &src )
+{
+	(void)src;
+
+	return (*this);
+}
+
+/* ************************************************************************** */
 /*                       Private static member variables                      */
 /* ************************************************************************** */
 
-int		Floor::_nbCharacters = 0;
-int		Floor::_nbMateriaSources = 0;
+bool	Floor::_isInit = false;
 Floor	*Floor::_first = NULL;
