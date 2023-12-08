@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:35:54 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 11:48:45 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 13:29:20 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Brain::~Brain( void )
 
 Brain	&Brain::operator=( const Brain &src )
 {
-	std::cout << YELLOW_T << "Brain operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "Brain assignation operator called" << DEFAULT_T << std::endl;
 
 	if (this != &src)
 		for (int i = 0; i < 100; i++)

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 14:56:34 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 13:29:20 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Animal::~Animal( void )
 
 Animal	&Animal::operator=( const Animal &src )
 {
-	std::cout << YELLOW_T << "Animal operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "Animal assignation operator called" << DEFAULT_T << std::endl;
 
 	this->_type = src._type;
 

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:34:16 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 11:25:01 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 13:29:20 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Dog::~Dog( void )
 
 Dog		&Dog::operator=( const Dog &src )
 {
-	std::cout << YELLOW_T << "Dog operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "Dog assignation operator called" << DEFAULT_T << std::endl;
 
 	if (this != &src)
 	{

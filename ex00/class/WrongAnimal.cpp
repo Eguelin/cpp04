@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:25:55 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/28 19:33:53 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 13:29:20 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ WrongAnimal::~WrongAnimal( void )
 
 WrongAnimal	&WrongAnimal::operator=( const WrongAnimal &src )
 {
-	std::cout << YELLOW_T << "WrongAnimal operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "WrongAnimal assignation operator called" << DEFAULT_T << std::endl;
 
 	this->_type = src._type;
 

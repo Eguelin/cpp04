@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:35:49 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/30 11:24:11 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 13:29:20 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Cat::~Cat( void )
 
 Cat		&Cat::operator=( const Cat &src )
 {
-	std::cout << YELLOW_T << "Cat operator= called" << DEFAULT_T << std::endl;
+	std::cout << YELLOW_T << "Cat assignation operator called" << DEFAULT_T << std::endl;
 
 	if (this != &src)
 	{
